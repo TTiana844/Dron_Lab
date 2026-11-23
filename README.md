@@ -1,4 +1,4 @@
-# Dron Lab
+ # Dron Lab
 
 Interaktívne cvičenia z dronových show (odbor 2567 multimédiá). Žiak v prehliadači upravuje show v simulátore, odovzdá ju a dostane semafor a krátky komentár trénera. Architektúra je rovnaká ako v Insta360_Lab (Vercel + Upstash).
 
