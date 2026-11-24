@@ -4,56 +4,106 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dron Lab · Dronové show</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/dist/tabler-icons.min.css">
 <style>
-:root{--bg:#eef2f7;--card:#fff;--ink:#14213a;--mut:#56627a;--line:#d5dce8;--acc:#0a8fb0;--accink:#fff;--ok:#16844a;--warn:#a96a00;--bad:#c23b3b}
-@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0a0f1e;--card:#131a30;--ink:#e9eefb;--mut:#9aa6c3;--line:#26304e;--acc:#4fd1ea;--accink:#06202a;--ok:#46c97d;--warn:#f0b53a;--bad:#f27474}}
+:root{--font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--ink:#1A1523;--mut:#6B7280;--mut2:#9C9BA8;--card:#FFFFFF;--bg:#F7F6FB;--line:#E4E1F0;--line2:#C9C5DE;--line3:#A9A3C7;
+--acc:#534AB7;--accd:#3C3489;--accdd:#26215C;--accl:#EEEDFE;--acc2:#AFA9EC;--accink:#fff;--ok:#0F6E56;--warn:#BA7517;--bad:#A32D2D;--r:8px;--rl:14px}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-main{max-width:980px;margin:0 auto;padding:18px 16px 56px}
-h1,h2,h3{font-family:Sora,system-ui,sans-serif;line-height:1.2;margin:0}
-h1{font-size:clamp(24px,5vw,34px)}h2{font-size:20px}h3{font-size:17px}
-.ic{width:1.3em;height:1.3em;vertical-align:-.28em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.leg{color:var(--mut);font-size:15px}.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+html,body{margin:0;padding:0;background:var(--bg)}
+body{font-family:var(--font-sans);color:var(--ink);font-size:14px;line-height:1.6;padding:1.5rem;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));max-width:1180px;margin:0 auto}
+h1,h2,h3{font-weight:500;line-height:1.3;margin:0}h2{font-size:16px}h3{font-size:14px}
+.ic{width:1.25em;height:1.25em;vertical-align:-.25em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.leg{color:var(--mut);font-size:13px}.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
 button,select,input,textarea{font:inherit;color:var(--ink)}button{cursor:pointer}
-button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
-.go{background:var(--acc);color:var(--accink);border:0;border-radius:999px;padding:10px 22px;font-weight:700}
-.go[disabled]{opacity:.55;cursor:wait}
-.sh{background:transparent;border:1.5px solid var(--line);border-radius:10px;padding:8px 14px}
-.sh[aria-pressed="true"],.sh[aria-selected="true"]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 16%,transparent);font-weight:700}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 14px}
+button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+/* hlavička */
+.hero-band{border-radius:var(--rl);overflow:hidden;margin-bottom:1.5rem;border:.5px solid #AFA9EC}
+.hero-top{background:#26215C;padding:1.5rem 1.5rem 0;display:grid;grid-template-columns:1fr 220px;gap:1rem;align-items:end}
+.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#AFA9EC;margin-bottom:.5rem}
+.hero-h{font-size:22px;font-weight:500;color:#fff;line-height:1.3;margin-bottom:.5rem}
+.hero-p{font-size:13px;color:#CECBF6;line-height:1.6;margin-bottom:1rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:1.25rem}
+.hpill{font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px;display:flex;align-items:center;gap:5px}
+.hpill-teal{background:#0F6E56;color:#9FE1CB}.hpill-purple{background:#534AB7;color:#EEEDFE}.hpill-amber{background:#633806;color:#FAC775}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-bottom:1.25rem;align-self:end}
+.hstat{background:#3C3489;border-radius:var(--r);padding:10px 12px;text-align:center}
+.hstat-n{font-size:22px;font-weight:500;color:#fff}.hstat-l{font-size:11px;color:#AFA9EC;margin-top:2px}
+.hero-stripe{background:#534AB7;display:flex;align-items:center;overflow:hidden}
+.stripe-item{flex:1;padding:8px 14px;display:flex;align-items:center;gap:8px;border-right:.5px solid #3C3489;font-size:12px;color:#EEEDFE}
+.stripe-item:last-child{border-right:none}.stripe-item i{font-size:15px;color:#AFA9EC;flex-shrink:0}
+@media (max-width:760px){.hero-top{grid-template-columns:1fr}.hero-stripe{flex-wrap:wrap}.stripe-item{flex:1 1 45%;border-bottom:.5px solid #3C3489}}
+/* záložky */
+.tabbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:1.25rem}
+.tabs{display:flex;gap:2px;background:#fff;padding:3px;border-radius:var(--r);border:.5px solid var(--line)}
+.tab{padding:7px 16px;border:0;background:transparent;border-radius:6px;font-size:13px;color:var(--mut)}
+.tab[aria-selected="true"]{background:var(--accl);color:var(--accd);font-weight:500}
+/* prvky */
+.go{background:var(--acc);color:var(--accink);border:0;border-radius:var(--r);padding:9px 18px;font-weight:500}.go:hover{background:var(--accd)}.go[disabled]{opacity:.55;cursor:wait}
+.sh{background:#fff;border:.5px solid var(--line2);border-radius:var(--r);padding:6px 12px;font-size:13px}.sh:hover{background:var(--accl)}
+.sh[aria-pressed="true"],.sh[aria-selected="true"]{border-color:var(--acc);background:var(--accl);color:var(--accd);font-weight:500}
+.card{background:var(--card);border:.5px solid var(--line);border-radius:var(--rl);padding:16px 18px;margin:0 0 14px}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 14px}
-input[type=text],select,textarea{background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;max-width:100%}
-textarea{width:100%;resize:vertical}
-input[type=range]{accent-color:var(--acc)}
-.sky{border-radius:14px;overflow:hidden;background:#070b18;border:1px solid var(--line)}canvas{display:block;width:100%;height:auto}
+input[type=text],select,textarea{background:#fff;border:.5px solid var(--line3);border-radius:var(--r);padding:8px 11px;max-width:100%}
+textarea{width:100%;resize:vertical}input[type=range]{accent-color:var(--acc)}
+.sky{border-radius:var(--rl);overflow:hidden;background:#070b18;border:.5px solid var(--line2)}canvas{display:block;width:100%;height:auto}
 .pl{margin:12px 0 4px;display:grid;gap:10px}
 .tl{display:flex;gap:12px;align-items:center}.tl input{flex:1;min-width:0}
-.tt{color:var(--mut);min-width:15ch;font-variant-numeric:tabular-nums;font-size:15px}
-.ro{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:grid;gap:4px;font-size:15px}
+.tt{color:var(--mut);min-width:15ch;font-variant-numeric:tabular-nums;font-size:13px}
+.ro{background:#fff;border:.5px solid var(--line);border-radius:var(--r);padding:10px 14px;display:grid;gap:4px;font-size:13px}
 .beats{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;max-width:420px}
-.bt{background:transparent;border:1.5px solid var(--line);border-radius:8px;padding:8px 0;position:relative}
-.bt[aria-pressed="true"]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 18%,transparent);font-weight:700}
-.bt .ic{position:absolute;top:-9px;right:-5px;width:1.1em;height:1.1em;color:var(--warn);background:var(--card);border-radius:50%}
+.bt{background:#fff;border:.5px solid var(--line2);border-radius:var(--r);padding:7px 0;position:relative}
+.bt[aria-pressed="true"]{border-color:var(--acc);background:var(--accl);font-weight:500;color:var(--accd)}
+.bt .ic{position:absolute;top:-9px;right:-5px;width:1.1em;height:1.1em;color:var(--warn);background:#fff;border-radius:50%}
 .res{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
-.res li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;border:1px solid var(--line)}
-.res .ic{width:1.5em;height:1.5em;flex:none}
-.ai{border-left:4px solid var(--acc);background:color-mix(in srgb,var(--acc) 9%,transparent);padding:10px 14px;border-radius:0 10px 10px 0;margin-top:10px}
-.warnbox{border-left:4px solid var(--warn);padding:8px 12px;margin-top:10px;color:var(--ink)}
-details{margin:6px 0}summary{cursor:pointer;color:var(--acc);font-weight:700}
-.cells{display:grid;grid-template-columns:auto repeat(3,auto);gap:4px 14px;align-items:center;justify-content:start;font-size:15px}
+.res li{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border-radius:var(--r);border:.5px solid var(--line)}.res .ic{width:1.5em;height:1.5em;flex:none}
+.ai{border-left:3px solid var(--acc);background:var(--accl);padding:10px 14px;border-radius:0 var(--r) var(--r) 0;margin-top:10px}
+.warnbox{border-left:3px solid var(--warn);background:#FAEEDA;padding:8px 12px;margin-top:10px;border-radius:0 var(--r) var(--r) 0}
+details{margin:6px 0}summary{cursor:pointer;color:var(--acc);font-weight:500}
+.cells{display:grid;grid-template-columns:auto repeat(3,auto);gap:4px 14px;align-items:center;justify-content:start;font-size:13px}
 .err{color:var(--bad);margin:8px 0 0}
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
-.tbl{border-collapse:collapse;font-size:15px;min-width:100%}
-.tbl th,.tbl td{border:1px solid var(--line);padding:6px 8px;text-align:center;white-space:nowrap}
-.tbl th{background:color-mix(in srgb,var(--acc) 10%,var(--card));position:sticky;top:0}
-.tbl td.nm{text-align:left;position:sticky;left:0;background:var(--card);font-weight:700}
-.tbl td.c{cursor:pointer}.tbl td.c:hover{background:color-mix(in srgb,var(--acc) 12%,transparent)}
-.gr{font-weight:700;font-size:17px}
-.modal{position:fixed;inset:0;background:rgba(5,8,20,.62);display:none;align-items:flex-start;justify-content:center;padding:4vh 12px;overflow:auto;z-index:20}
-.modal.on{display:flex}.modal .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;max-width:760px;width:100%}
+/* tutoriál (rozbaľovací) */
+.tut-wrap{border:.5px solid var(--line);border-radius:var(--r);margin:12px 0 0;overflow:hidden}
+.tut-toggle{width:100%;display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--bg);border:none;text-align:left}
+.tut-toggle:hover{background:var(--accl)}.tut-toggle-title{font-size:14px;font-weight:500;color:var(--accd);flex:1}
+.tut-toggle i.chev{font-size:14px;color:var(--acc);transition:transform .15s}.tut-toggle.open i.chev{transform:rotate(90deg)}
+.tut-body{display:none;padding:14px 16px;background:#fff}.tut-body.open{display:block}
+.tut-theory{line-height:1.68;margin-bottom:12px;padding-bottom:12px;border-bottom:.5px solid var(--line)}
+.tut-steps{display:flex;flex-direction:column;gap:8px}.tut-step{display:flex;gap:9px;align-items:baseline;line-height:1.55}
+.tut-step-n{font-weight:500;color:var(--acc);flex-shrink:0;min-width:34px}
+.tut-tip{margin-top:12px;background:#E1F5EE;color:#085041;border-radius:var(--r);padding:8px 12px;font-size:13px}
+/* infografika */
+.ig{background:#fff;border:.5px solid var(--line);border-radius:var(--rl);padding:16px 18px;margin:0 0 14px}
+.ig h2{margin-bottom:4px}.ig .sub{color:var(--mut);font-size:13px;margin-bottom:12px}
+.flow{display:flex;gap:10px;flex-wrap:wrap}
+.fl{flex:1;min-width:150px;background:var(--accl);border:.5px solid var(--acc2);border-radius:var(--r);padding:10px 12px;position:relative}
+.fl i{font-size:20px;color:var(--acc)}.fl b{display:block;margin:4px 0 2px;color:var(--accd);font-weight:500}.fl span{font-size:12px;color:var(--mut)}
+.fl .badge{position:absolute;top:8px;right:8px;font-size:10px;background:var(--acc);color:#fff;border-radius:99px;padding:1px 7px}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.panel{border:.5px solid var(--line);border-radius:var(--r);padding:8px;text-align:center;font-size:12px;color:var(--mut)}.panel svg{width:100%;height:auto;display:block}.panel b{display:block;color:var(--ink);font-weight:500;font-size:13px}
+.lt{border-collapse:collapse;width:100%;margin-top:12px;font-size:13px}.lt th,.lt td{border:.5px solid var(--line);padding:5px 8px;text-align:center}.lt th{background:var(--accl);color:var(--accd);font-weight:500}.lt td:first-child,.lt td:nth-child(2){text-align:left}
+.gbar{display:flex;height:26px;border-radius:var(--r);overflow:hidden;margin-top:6px;font-size:11px;font-weight:500;color:#fff}.gbar div{display:flex;align-items:center;justify-content:center;white-space:nowrap}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 18px}.gloss dt{font-weight:500;color:var(--accd)}.gloss dd{margin:0 0 6px;color:var(--ink)}
+/* učiteľ */
+.tw{overflow-x:auto;border:.5px solid var(--line);border-radius:var(--rl);background:#fff}
+.tbl{border-collapse:collapse;font-size:13px;min-width:100%}
+.tbl th,.tbl td{border:.5px solid var(--line);padding:6px 8px;text-align:center;white-space:nowrap}
+.tbl th{background:var(--accl);color:var(--accd);font-weight:500;position:sticky;top:0}
+.tbl td.nm{text-align:left;position:sticky;left:0;background:#fff;font-weight:500}
+.tbl td.c{cursor:pointer}.tbl td.c:hover{background:var(--accl)}.gr{font-weight:500;font-size:16px}
+.modal{position:fixed;inset:0;background:rgba(38,33,92,.55);display:none;align-items:flex-start;justify-content:center;padding:4vh 12px;overflow:auto;z-index:20}
+.modal.on{display:flex}.modal .box{background:#fff;border:.5px solid var(--line2);border-radius:var(--rl);padding:18px 20px;max-width:760px;width:100%}
 .stat{display:inline-block;margin-right:18px}
+.hpill-book{background:#0C447C;color:#CFE6FB;text-decoration:none}.hpill-book:hover{background:#0F5A9E}
+.banner{border-radius:var(--rl);overflow:hidden;border:.5px solid var(--acc2);margin-bottom:14px;line-height:0}.banner svg{width:100%;height:auto;display:block}
+.lead{font-size:16px;line-height:1.7;max-width:70ch;margin:0 0 14px}
+.ben{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.bn{border:.5px solid var(--line);border-radius:var(--r);padding:12px 14px;background:#fff}.bn i{font-size:22px;color:var(--acc)}.bn b{display:block;margin:4px 0 2px;color:var(--accd);font-weight:500}.bn span{font-size:13px;color:var(--mut)}
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.cmp figure{margin:0;border:.5px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}.cmp svg{width:100%;height:auto;display:block}.cmp figcaption{padding:10px 14px;font-size:13px;color:var(--mut)}.cmp figcaption b{display:block;color:var(--accd);font-weight:500;font-size:14px}
+.fl .badge.here{background:#0F6E56}.fl.here{border-color:#0F6E56;background:#E1F5EE}.fl.here b{color:#085041}
+.lim{background:#FAEEDA;border:.5px solid #EF9F27;border-radius:var(--r);padding:12px 14px;color:#412402}.lim b{color:#412402}
+.cta{background:var(--accl);border:.5px solid var(--acc2);border-radius:var(--rl);padding:16px 18px;margin:0 0 14px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}.cta p{margin:0;max-width:60ch}
+.lcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
 </style>
 </head>
 <body>
@@ -70,15 +120,34 @@ details{margin:6px 0}summary{cursor:pointer;color:var(--acc);font-weight:700}
 <symbol id="i-try" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></symbol>
 </svg>
 <main>
-<div class="top"><h1>Dron Lab</h1><div id="who" class="leg"></div></div>
+<div class="hero-band">
+<div class="hero-top"><div>
+<div class="hero-eyebrow">SPŠJM 2567 Multimédiá Ing. Tatiana Vráblová</div>
+<div class="hero-eyebrow">Dron Lab · Dronové show · Simulátor v prehliadači</div>
+<div class="hero-h">Dron Lab — od prvého kruhu po bezpečnú show</div>
+<div class="hero-p">Uprav show v simulátore, nájdi chybu, oprav ju a odovzdaj. Semafor ti ukáže, čo vyšlo, a tréner ku každému pokusu napíše krátky komentár.<br>Úlohy môžeš robiť samostatne alebo v tíme (2–4 členovia), každý pokus sa ukladá.</div>
+<div class="hero-pills">
+<span class="hpill hpill-teal"><i class="ti ti-users" style="font-size:11px" aria-hidden="true"></i>Aj tímovo</span>
+<span class="hpill hpill-purple"><i class="ti ti-user" style="font-size:11px" aria-hidden="true"></i>Individuálne</span>
+<span class="hpill hpill-amber"><i class="ti ti-sparkles" style="font-size:11px" aria-hidden="true"></i>Komentár trénera ku každému pokusu</span>
+<span class="hpill hpill-purple"><i class="ti ti-school" style="font-size:11px" aria-hidden="true"></i>Učiteľský prehľad</span>
+<a href="#sec-entry" id="lnkEntry" class="hpill hpill-book"><i class="ti ti-key" style="font-size:11px" aria-hidden="true"></i>Mám kód triedy</a></div></div>
+<div class="hero-stats"><div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">lekcie</div></div><div class="hstat"><div class="hstat-n">9</div><div class="hstat-l">úloh</div></div><div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">úrovne</div></div><div class="hstat"><div class="hstat-n">1–5</div><div class="hstat-l">známka</div></div></div></div>
+<div class="hero-stripe"><div class="stripe-item"><i class="ti ti-plane" aria-hidden="true"></i>Vzlet a tvar</div><div class="stripe-item"><i class="ti ti-ruler-2" aria-hidden="true"></i>Odstup</div><div class="stripe-item"><i class="ti ti-gauge" aria-hidden="true"></i>Rýchlosť</div><div class="stripe-item"><i class="ti ti-shield-check" aria-hidden="true"></i>Výška a priestor</div><div class="stripe-item"><i class="ti ti-arrows-shuffle" aria-hidden="true"></i>Priradenie dronov</div></div>
+</div>
+
+<section id="sec-home"><div id="homeOut"></div></section>
 
 <section id="sec-entry" class="card" hidden><h2 id="entry-h"></h2><div id="entry-body" style="margin-top:10px"></div></section>
 
 <section id="sec-main" hidden>
-<div class="row" role="tablist" style="margin:0 0 14px">
-<button class="sh" role="tab" id="tabSim" aria-selected="true">Simulátor</button>
-<button class="sh" role="tab" id="tabMine" aria-selected="false">Moje odovzdania</button>
-</div>
+<div class="tabbar"><div class="tabs" role="tablist">
+<button class="tab" role="tab" id="tabHome" aria-selected="false"><i class="ti ti-home" aria-hidden="true"></i> Domov</button>
+<button class="tab" role="tab" id="tabSim" aria-selected="true"><i class="ti ti-player-play" aria-hidden="true"></i> Cvičenia</button>
+<button class="tab" role="tab" id="tabMine" aria-selected="false"><i class="ti ti-list-check" aria-hidden="true"></i> Moje odovzdania</button>
+<button class="tab" role="tab" id="tabBook" aria-selected="false"><i class="ti ti-book-2" aria-hidden="true"></i> Učebnica</button></div><div id="who" class="leg"></div></div>
+
+<div id="pane-home" hidden><div id="homeIn"></div></div>
 
 <div id="pane-sim">
 <details class="card" id="team"><summary id="team-sum"></summary><div id="team-body" style="margin-top:10px"></div></details>
@@ -86,7 +155,7 @@ details{margin:6px 0}summary{cursor:pointer;color:var(--acc);font-weight:700}
 <div class="row" id="caseNav" role="tablist" aria-label="Prípad" style="margin-top:8px"></div>
 <div class="row" id="levelNav" role="group" aria-label="Úroveň" style="margin-top:8px"></div>
 <h2 id="ttl" style="margin-top:14px"></h2><p id="story" style="margin:6px 0 0"></p>
-<details><summary>Zasekol som sa</summary><p id="tip" class="leg"></p></details></div>
+<details><summary>Zasekol som sa</summary><p id="tip" class="leg"></p></details><div id="tut"></div></div>
 
 <div class="sky"><canvas id="cv" width="900" height="480" role="img" aria-label="Simulácia dronovej show"></canvas></div>
 <div class="row" style="margin:12px 0 0"><button class="go" id="play"></button>
@@ -107,6 +176,7 @@ details{margin:6px 0}summary{cursor:pointer;color:var(--acc);font-weight:700}
 </div>
 
 <div id="pane-mine" hidden><div id="mine"></div></div>
+<div id="pane-book" hidden><div id="book"></div></div>
 </section>
 <section id="sec-teacher" hidden>
 <div class="card" id="t-login"><h2>Prihlásenie učiteľa</h2><div class="row" style="margin-top:10px"><input type="text" id="t-pw" autocomplete="current-password" aria-label="Heslo učiteľa" placeholder="Heslo" style="-webkit-text-security:disc"><button class="go" id="t-go">Prihlásiť</button></div><p class="err" id="t-err"></p></div>
@@ -231,6 +301,32 @@ function evaluate(lesson, caseId, level, params) {
   return { pass: rows.every(r => r.ok), rows, params: c };
 }
 
+// api/_grade.js — jedna známka za lekciu z troch úrovní (Základ, Výzva, Expert).
+// Základ splnený (3 z 3 prípadov) = známka 3. Vyššie úrovne ju vylepšujú.
+// Všetky čísla sú v jednom bloku nižšie, aby sa dali ľahko upraviť.
+//
+// Body za lekciu (spolu 100), rozdelené rovnomerne medzi 3 prípady (A, B, C):
+//   Základ 60 b.  ->  60 = známka 3
+//   Výzva  18 b.  ->  78 = známka 2  (Výzva sa počíta, až keď je Základ splnený celý)
+//   Expert 22 b.  -> 100 = známka 1  (Expert sa počíta, až keď je Výzva splnená celá)
+// Pásma rovnaké ako v ostatných projektoch: 86–100 = 1, 70–85 = 2, 56–69 = 3, 40–55 = 4, 0–39 = 5.
+
+const POINTS = [60, 18, 22];
+const BANDS = [[86, 1], [70, 2], [56, 3], [40, 4], [0, 5]]; // [od koľkých bodov, známka]
+const gradeOf = p => BANDS.find(([min]) => p >= min)[1];
+
+// solved[úroveň] = pole 3 pravdivostných hodnôt pre prípady A, B, C (aspoň jeden pokus prešiel)
+function lessonScore(solved, attempted = true) {
+  const n = lv => (solved[lv] || []).filter(Boolean).length;
+  let pts = (POINTS[0] * n(0)) / 3;
+  if (n(0) === 3) {
+    pts += (POINTS[1] * n(1)) / 3;
+    if (n(1) === 3) pts += (POINTS[2] * n(2)) / 3;
+  }
+  pts = Math.round(pts * 10) / 10;
+  return { points: pts, grade: attempted ? gradeOf(pts) : null };
+}
+
 </script>
 <script>
 const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -260,7 +356,7 @@ if(S.cfg.reason==="bad_code"){S.code="";save()}
 if(S.cfg.ok&&S.sid&&!students().some(s=>s.id===S.sid)){S.sid="";S.mates=[];save()}}
 async function loadMine(){if(!S.cfg||!S.cfg.ok||!S.sid)return;try{const r=await fetch("/api/mine?code="+encodeURIComponent(S.code)+"&studentId="+encodeURIComponent(S.sid),{cache:"no-store"});S.mine=await r.json()}catch(e){S.mine=null}}
 function renderEntry(){const ok=S.cfg&&S.cfg.ok;
-$("#sec-entry").hidden=!!(ok&&S.sid);$("#sec-main").hidden=!(ok&&S.sid);
+$("#sec-entry").hidden=!!(ok&&S.sid);$("#sec-main").hidden=!(ok&&S.sid);$("#sec-home").hidden=!!(ok&&S.sid);$("#lnkEntry").style.display=ok&&S.sid?"none":"";
 $("#who").innerHTML=ok&&S.sid?esc(S.cfg.cls.name)+" · <b>"+esc(nameOf(S.sid))+'</b> <button class="sh" id="chg" style="padding:3px 10px;font-size:14px">Zmeniť</button>':"";
 if(ok&&S.sid){$("#chg").onclick=()=>{S.code="";S.sid="";S.mates=[];S.mine=null;S.res=null;S.cfg={ok:false,reason:"need_code"};save();renderEntry()};return}
 const b=$("#entry-body");
@@ -289,7 +385,7 @@ $("#levelNav").innerHTML='<span class="leg">Úroveň:</span>'+LV.map((n,i)=>'<bu
 $("#lessonNav").querySelectorAll("button").forEach(b=>b.onclick=()=>{S.lesson=b.dataset.l;sel()});
 $("#caseNav").querySelectorAll("button").forEach(b=>b.onclick=()=>{S.caseId=b.dataset.c;sel()});
 $("#levelNav").querySelectorAll("button[data-v]").forEach(b=>b.onclick=()=>{S.level=+b.dataset.v;sel()});
-const i=INFO[S.lesson][S.caseId];$("#ttl").textContent=i[0];$("#story").textContent=i[1];$("#tip").textContent=i[2]}
+const i=INFO[S.lesson][S.caseId];$("#ttl").textContent=i[0];$("#story").textContent=i[1];$("#tip").textContent=i[2];$("#tut").innerHTML=tutHtml(S.lesson)}
 function setP(k,v){(S.params[pkey()]||(S.params[pkey()]={}))[k]=v;save();S.res=null;renderResult();prev()}
 const durLbl=v=>v===.25?"0,25 úderu":v===.5?"0,5 úderu":v===1?"1 úder":v+" údery";
 function renderParams(){const box=$("#params");box.innerHTML="";const L=LESSONS[S.lesson];
@@ -377,8 +473,9 @@ const grid='<div class="cells"><span></span>'+["A","B","C"].map(c=>"<b>"+c+"</b>
 const att=d.attempts.length?d.attempts.map(a=>'<details><summary>'+esc(a.date)+" "+esc(a.time)+" · Prípad "+a.caseId+" · "+LV[a.level]+" · "+(a.pass?"prešlo":"neprešlo")+"</summary><div style='padding:6px 0'>"+
 (a.members.length>1?'<div class="leg">Tím: '+a.members.map(esc).join(", ")+"</div>":"")+(a.by?'<div class="leg">Odovzdal: <b>'+esc(a.by)+"</b></div>":"")+rowsHtml(a.rows)+(a.note?'<p class="leg">Tvoja poznámka: '+esc(a.note)+"</p>":"")+(a.comment?'<div class="ai"><b>Komentár trénera</b><br>'+esc(a.comment)+"</div>":"")+"</div></details>").join(""):'<p class="leg">Zatiaľ nič neodovzdané.</p>';
 return'<div class="card"><h2>'+LNAME[l]+'</h2><div style="margin:10px 0">'+grid+"</div>"+att+"</div>"}).join("")}
-function tab(t){S.tab=t;$("#pane-sim").hidden=t!=="sim";$("#pane-mine").hidden=t!=="mine";$("#tabSim").setAttribute("aria-selected",t==="sim");$("#tabMine").setAttribute("aria-selected",t==="mine");if(t==="mine")loadMine().then(renderMine);else renderNav()}
-$("#tabSim").onclick=()=>tab("sim");$("#tabMine").onclick=()=>tab("mine");
+function tab(t){S.tab=t;for(const[k,id]of[["home","Home"],["sim","Sim"],["mine","Mine"],["book","Book"]]){$("#pane-"+k).hidden=t!==k;$("#tab"+id).setAttribute("aria-selected",t===k)}
+if(t==="mine")loadMine().then(renderMine);else if(t==="book")renderBook();else renderNav()}
+$("#tabHome").onclick=()=>tab("home");$("#tabSim").onclick=()=>tab("sim");$("#tabMine").onclick=()=>tab("mine");$("#tabBook").onclick=()=>tab("book");
 $("#note").value=S.note||"";$("#note").oninput=e=>{S.note=e.target.value};
 /* ---------- učiteľ ---------- */
 const LIDS=Object.keys(LESSONS),GCOL=g=>g<=2?"ok":g===3?"warn":"bad";
@@ -426,12 +523,82 @@ $("#c-modal").classList.add("on");$("#c-x").onclick=closeM;
 $("#c-s").onclick=async()=>{try{const r=await tApi("saveClass",{id:edit?cls.id:undefined,name:$("#c-n").value,lines:$("#c-l").value.split("\n")});closeM();await tLoad(r.id)}catch(e){$("#c-e").textContent=e.message}}}
 $("#t-go").onclick=tLogin;$("#t-pw").onkeydown=e=>{if(e.key==="Enter")tLogin()};
 document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeM()}));
-function view(){const t=location.hash==="#ucitel";$("#sec-teacher").hidden=!t;if(t){$("#sec-entry").hidden=true;$("#sec-main").hidden=true;$("#who").innerHTML="";stop();tView()}else renderEntry()}
+function view(){const t=location.hash==="#ucitel";$("#sec-teacher").hidden=!t;if(t){$("#sec-entry").hidden=true;$("#sec-main").hidden=true;$("#sec-home").hidden=true;$("#who").innerHTML="";stop();tView()}else renderEntry()}
 window.addEventListener("hashchange",view);
+/* ---------- učebnica: tutoriály, infografiky, slovník ---------- */
+const TUT={
+intro:{title:"Ako používať simulátor — teória a postup",theory:"Simulátor je zjednodušený model dronovej show: 20 dronov, hudba s tempom 96 úderov za minútu a 16 úderov v show. Show je vždy rovnaká, mení sa len to, čo nastavíš. Nič sa nezapíše, kým nestlačíš <b>Odovzdať učiteľovi</b>.",
+steps:["Stlač <b>Spusti show</b> a sleduj, čo sa deje. Panel <b>Čo sa práve deje</b> pod simuláciou ukazuje živé hodnoty.","<b>Pauza</b>, spomalenie (0,5× až 0,1×), krok o úder alebo o 0,1 s a časová os ti dovolia zastaviť presne v okamihu, keď vznikne problém.","Zaškrtni <b>Zastav pri prvom probléme</b>: show sa zastaví sama a označí drony s problémom. Červený krúžok znamená príliš blízko, žltý príliš rýchlo alebo mimo povolenej oblasti.","Show nastav posuvníkmi alebo tlačidlami v časti <b>Nastav show</b>.","<b>Skontrolovať (len pre mňa)</b> ti dá semafor bez zápisu. <b>Odovzdať učiteľovi</b> pokus zapíše, dostaneš komentár trénera a uvidí ho aj učiteľ."],
+tip:"Pri práci v tíme vyber, kto odovzdáva. Odovzdanie platí všetkým členom a vidíš v ňom, kto ho urobil."},
+"1.2":{title:"Tutoriál k lekcii 1.2 — Oprav show",theory:"Show musí spĺňať tri pravidlá. <b>Odstup:</b> žiadne dva drony sa nesmú priblížiť pod minimálnu vzdialenosť, inak hrozí zrážka. <b>Rýchlosť:</b> dron sa nesmie pohybovať rýchlejšie, než je povolené, a čím kratšia je zmena tvaru, tým je rýchlosť väčšia. <b>Časovanie:</b> zmena sa má trafiť na zvýraznený úder hudby. Keď je 20 dronov rovnomerne na kruhu, odstup susedov je asi 0,31 × polomer kruhu. Kruh preto potrebuje polomer aspoň odstup ÷ 0,31.",
+steps:["<b>Prípad A (príliš blízko):</b> spusti show a všimni si červené krúžky. Zväčši kruh, kým nezmiznú.","<b>Prípad B (príliš rýchlo):</b> žltý krúžok znamená, že dron letí rýchlejšie, než dovoľuje limit. Predĺž trvanie zmeny, aby sa dráha rozložila na viac úderov.","<b>Prípad C (mimo hudby):</b> nájdi úder s ikonou noty, kde hudba zahrá silnejší akord, a tam presuň začiatok zmeny.","<b>Skontroluj a odovzdaj.</b> Vyššie úrovne majú prísnejšie limity, takže na tom istom prípade sa musíš viac snažiť."],
+tip:"Spomaľ show na 0,25× a sleduj hodnotu Najmenší odstup teraz. Uvidíš, v ktorom okamihu klesne pod limit."},
+"2.1":{title:"Tutoriál k lekcii 2.1 — Kam môže show vletieť",theory:"Show sa smie pohybovať len v povolenom priestore: pod najvyššou povolenou výškou (čiarkovaná čiara) a mimo zakázaného priestoru (červený obdĺžnik). V skutočnosti také priestory určujú povolenia a predpisy, hodnoty v simulátore sú učebné. Oprava jednej chyby nesmie pokaziť druhú: väčší kruh má lepší odstup, ale potrebuje viac miesta.",
+steps:["<b>Prípad A:</b> zníž výšku show tak, aby najvyšší dron zostal pod čiarkovanou čiarou.","<b>Prípad B:</b> posuň show doľava, mimo červeného priestoru. Stačí, aby sa jeden dron dotkol zóny a kontrola neprejde.","<b>Prípad C:</b> oprav obe chyby naraz. Kruh môžeš aj zmenšiť, ale ak ho zmenšíš príliš, drony sa začnú tlačiť.","<b>Vyššie úrovne</b> majú nižší strop, širšiu zakázanú zónu a väčší odstup. Kruh sa musí zmestiť do menšieho priestoru, hľadaj teda vyváženie veľkosti, výšky a polohy."],
+tip:"Panel Čo sa práve deje ukazuje výšku najvyššieho drona a či niektorý zasahuje do zóny."},
+"2.2":{title:"Tutoriál k lekcii 2.2 — Zmena tvaru bez zrážok",theory:"Pri zmene tvaru dostane každý dron nové miesto. Záleží na tom, ktorý dron letí kam: ak letí na opačnú stranu, jeho dráha vedie cez stred a stretne sa s ostatnými. <b>Posun priradenia</b> určuje, že dron číslo i letí na bod číslo i + posun (po obvode tvaru). Biele čiary v náhľade sú dráhy dronov: krátke a zhruba rovnobežné čiary znamenajú bezpečnú zmenu.",
+steps:["<b>Prípad A (hviezda):</b> hýb posuvníkom a sleduj čiary. Hľadaj hodnoty, pri ktorých sú dráhy najkratšie.","<b>Prípad B (štvorec):</b> najkratšia dráha tu nemusí vyhovieť limitu rýchlosti. Skúšaj blízke hodnoty a sleduj aj semafor.","<b>Prípad C:</b> oprav priradenie aj trvanie zmeny. Dlhšia zmena znižuje rýchlosť, ale nepomôže, ak sa dráhy krížia.","Pusti show spomalene a sleduj <b>Najmenší odstup teraz</b>: pri zlom priradení klesne uprostred zmeny."],
+tip:"Chyba nie je v tvare, ale v tom, kto kam letí. Ten istý tvar sa dá vytvoriť bezpečne aj nebezpečne."}};
+const GLOSS=[["Úder","Jedna doba hudby. Tu má hudba 96 úderov za minútu a show trvá 16 úderov."],["Formácia","Tvar, ktorý drony spolu tvoria (kruh, hviezda, štvorec)."],["Priradenie","Určenie, ktorý dron letí na ktoré miesto nového tvaru."],["Dráha (trajektória)","Cesta, ktorou dron letí z jedného miesta na druhé."],["Odstup","Vzdialenosť medzi dvoma dronmi. Príliš malý odstup znamená riziko zrážky."],["Rýchlosť","Ako rýchlo sa dron pohybuje. Rastie, keď je zmena kratšia alebo dráha dlhšia."],["Strop","Najvyššia povolená výška show."],["Zakázaný priestor","Oblasť, do ktorej drony nesmú vletieť."],["Semafor","Hodnotenie jednotlivých pravidiel: ✅ prešlo, ⚠️ pozor, ❌ neprešlo."],["Simulácia","Počítačový model show. Nelieta sa so skutočnými dronmi."],["Choreografia","Naplánovaný pohyb a svetlo všetkých dronov v čase."],["LED (RGB)","Svetlo na drone, ktoré skladá farby z červenej, zelenej a modrej."],["RTK GNSS","Presná satelitná navigácia, ktorú väčšina vonkajších show používa na určenie polohy dronov."]];
+const TUTOPEN={};
+function tutHtml(id){const t=TUT[id],o=TUTOPEN[id]?" open":"";return'<div class="tut-wrap"><button class="tut-toggle'+o+'" data-tut="'+id+'"><i class="ti ti-chevron-right chev" aria-hidden="true"></i><span class="tut-toggle-title">'+t.title+'</span></button><div class="tut-body'+o+'"><div class="tut-theory">'+t.theory+'</div><div class="tut-steps">'+t.steps.map((x,i)=>'<div class="tut-step"><span class="tut-step-n">'+(id==="intro"?"•":id+"."+(i+1))+"</span><span>"+x+"</span></div>").join("")+'</div><div class="tut-tip"><b>Tip:</b> '+t.tip+"</div></div></div>"}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".tut-toggle");if(!b)return;const on=!b.classList.contains("open");b.classList.toggle("open",on);b.nextElementSibling.classList.toggle("open",on);TUTOPEN[b.dataset.tut]=on});
+function svgPanel(kind){const P="#534AB7",R="#A32D2D",A="#BA7517",L=LESSONS["1.2"].levels[0],L2=LESSONS["2.1"].levels[0];let g="",cap="",sub="";
+if(kind==="gap"){g='<circle cx="75" cy="65" r="36" fill="none" stroke="'+R+'" stroke-dasharray="4 3"/><circle cx="75" cy="65" r="8" fill="'+P+'"/><circle cx="185" cy="65" r="8" fill="'+P+'"/><path d="M87 65h86M93 60l-6 5 6 5M167 60l6 5-6 5" stroke="'+A+'" stroke-width="2" fill="none"/><text x="130" y="52" text-anchor="middle" font-size="12" fill="'+A+'">odstup</text><text x="75" y="118" text-anchor="middle" font-size="11" fill="'+R+'">sem sa druhý dron nesmie dostať</text>';cap="Odstup";sub="aspoň "+L.sep+" (Základ)"}
+if(kind==="speed"){g='<circle cx="50" cy="65" r="8" fill="'+P+'"/><path d="M20 55h18M14 65h22M20 75h18" stroke="'+P+'" stroke-width="2" opacity=".45"/><path d="M66 65h150M204 56l12 9-12 9" stroke="'+A+'" stroke-width="2.5" fill="none"/><text x="135" y="52" text-anchor="middle" font-size="12" fill="'+A+'">rýchlosť</text><text x="135" y="105" text-anchor="middle" font-size="11" fill="'+R+'">kratšia zmena = väčšia rýchlosť</text>';cap="Rýchlosť";sub="najviac "+L.vmax+" (Základ)"}
+if(kind==="area"){g='<path d="M0 30H260" stroke="'+A+'" stroke-dasharray="6 4" stroke-width="1.5"/><text x="8" y="22" font-size="11" fill="'+A+'">najvyššia povolená výška</text><rect x="175" y="50" width="75" height="60" fill="'+R+'" opacity=".16" stroke="'+R+'" stroke-dasharray="4 3"/><text x="212" y="84" text-anchor="middle" font-size="11" fill="'+R+'">zakázaný priestor</text>'+Array.from({length:12},(_,i)=>{const a=i/12*2*Math.PI;return'<circle cx="'+(90+38*Math.cos(a)).toFixed(1)+'" cy="'+(80+38*Math.sin(a)).toFixed(1)+'" r="4.5" fill="'+P+'"/>'}).join("");cap="Výška a priestor";sub="najviac "+(440-L2.ceil)+" vysoko (Základ)"}
+return'<div class="panel"><svg viewBox="0 0 260 130" role="img" aria-label="'+cap+'"><rect width="260" height="130" fill="#F7F6FB"/>'+g+"</svg><b>"+cap+"</b>"+sub+"</div>"}
+function limitsTable(){const LVN=["Základ","⭐ Výzva","⭐⭐ Expert"];let r="";
+for(const l of Object.keys(LESSONS)){const lv=LESSONS[l].levels,add=(n,f)=>{r+='<tr><td>'+l+"</td><td>"+n+"</td>"+lv.map(x=>"<td>"+f(x)+"</td>").join("")+"</tr>"};
+add("Najmenší odstup",x=>"aspoň "+x.sep);if(lv[0].vmax)add("Najvyššia rýchlosť",x=>"najviac "+x.vmax);if(lv[0].ceil){add("Najvyššia výška",x=>"najviac "+(440-x.ceil));add("Zakázaný priestor začína",x=>"od x = "+x.zx1)}}
+return'<table class="lt"><tr><th>Lekcia</th><th>Pravidlo</th>'+LVN.map(n=>"<th>"+n+"</th>").join("")+"</tr>"+r+"</table>"}
+function gradeBar(){const col={5:"#A32D2D",4:"#BA7517",3:"#639922",2:"#1D9E75",1:"#0F6E56"},asc=[...BANDS].reverse(),top=100;
+const bands=asc.map(([min,g],i)=>{const nx=i<asc.length-1?asc[i+1][0]:top;return'<div style="width:'+(nx-min)+'%;background:'+col[g]+'" title="od '+min+' b.">'+g+"</div>"}).join("");
+const lvl=POINTS.map((p,i)=>'<div style="width:'+p+'%;background:'+["#26215C","#534AB7","#AFA9EC"][i]+";"+(i===2?"color:#26215C":"")+'">'+["Základ","+ Výzva","+ Expert"][i]+" "+p+" b.</div>").join("");
+const c1=POINTS[0],c2=c1+POINTS[1],c3=c2+POINTS[2];
+return'<div class="leg" style="margin-top:8px">Známky podľa bodov (0 až 100)</div><div class="gbar">'+bands+'</div><div class="leg" style="margin-top:10px">Body za lekciu</div><div class="gbar">'+lvl+'</div><p style="margin:10px 0 0">Splnený <b>Základ</b> = '+c1+" b. = známka <b>"+gradeOf(c1)+"</b>. Splnená aj <b>Výzva</b> = "+c2+" b. = známka <b>"+gradeOf(c2)+"</b>. Splnený aj <b>Expert</b> = "+c3+" b. = známka <b>"+gradeOf(c3)+'</b>. Za každý z troch prípadov (A, B, C) dostaneš tretinu bodov úrovne. Výzva sa počíta, až keď je splnený celý Základ, Expert až keď je splnená celá Výzva. Známku môže učiteľ ručne upraviť.</p>'}
+function renderBook(){$("#book").innerHTML=
+'<div class="ig"><h2>Ako vzniká dronová show</h2><div class="sub">Päť krokov od nápadu po odovzdanie. Čísla v rohu ukazujú, v ktorej lekcii sa s krokom stretneš.</div><div class="flow">'+
+[["ti-shape","Tvar a pohyb","Z akých tvarov show vznikne a kam sa drony pohybujú.","2.1"],["ti-arrows-shuffle","Priradenie dronov","Ktorý dron letí na ktoré miesto nového tvaru.","2.2"],["ti-music","Svetlo a hudba","Farby a zmeny načasované na údery hudby.","1.2"],["ti-shield-check","Kontrola pravidiel","Odstup, rýchlosť, výška a zakázaný priestor.","1.2 · 2.1"],["ti-message-circle","Odovzdanie","Semafor, komentár trénera a známka.","všetky"]].map(x=>'<div class="fl"><span class="badge">'+x[3]+'</span><i class="ti '+x[0]+'" aria-hidden="true"></i><b>'+x[1]+"</b><span>"+x[2]+"</span></div>").join("")+"</div></div>"+
+'<div class="ig"><h2>Čo kontrolujeme</h2><div class="sub">Tri pravidlá, ktoré musí show spĺňať. Čísla sú učebné hodnoty, nie skutočné predpisy.</div><div class="panels">'+svgPanel("gap")+svgPanel("speed")+svgPanel("area")+"</div>"+limitsTable()+"</div>"+
+'<div class="ig"><h2>Úrovne a známka</h2><div class="sub">Jedna známka za lekciu: Základ ťa dostane na trojku, vyššie úrovne ju vylepšujú.</div>'+gradeBar()+"</div>"+
+'<div class="ig"><h2>Tutoriály</h2><div class="sub">Teória a postup ku každej lekcii. Rovnaký tutoriál nájdeš aj pri cvičení.</div>'+["intro","1.2","2.1","2.2"].map(tutHtml).join("")+"</div>"+
+'<div class="ig"><h2>Slovník pojmov</h2><dl class="gloss">'+GLOSS.map(g=>"<div><dt>"+g[0]+"</dt><dd>"+g[1]+"</dd></div>").join("")+"</dl></div>"}
+/* ---------- domovská informačná stránka ---------- */
+function heroScene(){let x=7;const rnd=()=>(x=(x*16807)%2147483647)/2147483647;let o='<svg viewBox="0 0 900 260" role="img" aria-label="Nočná obloha nad mestom, drony tvoria kruh, hviezdu a štvorec"><defs><linearGradient id="dlSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1030"/><stop offset="1" stop-color="#2a2468"/></linearGradient></defs><rect width="900" height="260" fill="url(#dlSky)"/>';
+for(let i=0;i<70;i++)o+='<circle cx="'+(rnd()*900).toFixed(0)+'" cy="'+(rnd()*190).toFixed(0)+'" r="'+(.5+rnd()*1.1).toFixed(1)+'" fill="#CECBF6" opacity="'+(.35+rnd()*.5).toFixed(2)+'"/>';
+o+='<circle cx="835" cy="48" r="20" fill="#EEEDFE" opacity=".92"/><circle cx="843" cy="42" r="18" fill="#1a1850"/>';
+let bx=0;while(bx<900){const w=26+rnd()*38,h=34+rnd()*70;o+='<rect x="'+bx.toFixed(0)+'" y="'+(260-h).toFixed(0)+'" width="'+w.toFixed(0)+'" height="'+h.toFixed(0)+'" fill="#12112e"/>';for(let k=0;k<5;k++)if(rnd()>.55)o+='<rect x="'+(bx+5+rnd()*(w-12)).toFixed(0)+'" y="'+(260-h+6+rnd()*(h-14)).toFixed(0)+'" width="3" height="4" fill="#FAC775" opacity=".55"/>';bx+=w+2}
+const dots=(arr,cx,cy,R,c)=>arr.map(q=>{const X=(cx+q[0]*R).toFixed(1),Y=(cy+q[1]*R).toFixed(1);return'<circle cx="'+X+'" cy="'+Y+'" r="9" fill="'+c+'" opacity=".2"/><circle cx="'+X+'" cy="'+Y+'" r="3.6" fill="'+c+'"/>'}).join("");
+o+=dots(circ,170,112,58,"#7F77DD")+dots(star,450,104,84,"#F5B342")+dots(square,730,112,60,"#5DCAA5");return o+"</svg>"}
+function cmpSim(){let o='<svg viewBox="0 0 420 280" role="img" aria-label="Obrazovka so simuláciou, pod ňou ovládanie času"><rect width="420" height="280" fill="#F7F6FB"/><rect x="50" y="26" width="320" height="178" rx="12" fill="#26215C"/><rect x="60" y="36" width="300" height="158" rx="6" fill="#0b1030"/>';
+o+=circ.map(q=>'<circle cx="'+(210+q[0]*50).toFixed(1)+'" cy="'+(112+q[1]*50).toFixed(1)+'" r="4" fill="#AFA9EC"/>').join("");
+o+='<circle cx="210" cy="112" r="18" fill="none" stroke="#A32D2D" stroke-dasharray="3 3" opacity=".0"/><rect x="50" y="216" width="320" height="42" rx="10" fill="#EEEDFE" stroke="#C9C5DE"/><path d="M72 226l16 11-16 11z" fill="#534AB7"/><rect x="104" y="236" width="244" height="4" rx="2" fill="#C9C5DE"/><rect x="104" y="236" width="130" height="4" rx="2" fill="#534AB7"/><circle cx="234" cy="238" r="7" fill="#534AB7"/>';
+o+='<circle cx="352" cy="46" r="15" fill="#0F6E56"/><path d="M345 46l5 5 9-10" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>';return o}
+function cmpReal(){let o='<svg viewBox="0 0 420 280" role="img" aria-label="Skutočná show: drony na oblohe, pilot s notebookom, povolenia a počasie"><defs><linearGradient id="dlSky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1030"/><stop offset="1" stop-color="#2a2468"/></linearGradient></defs><rect width="420" height="280" fill="url(#dlSky2)"/><rect y="210" width="420" height="70" fill="#14142e"/>';
+for(let i=0;i<9;i++)o+='<circle cx="'+(90+i*30)+'" cy="'+(70+Math.sin(i/8*Math.PI)*-32+30).toFixed(0)+'" r="9" fill="#F5B342" opacity=".2"/><circle cx="'+(90+i*30)+'" cy="'+(70+Math.sin(i/8*Math.PI)*-32+30).toFixed(0)+'" r="3.6" fill="#F5B342"/>';
+o+='<circle cx="40" cy="40" r="14" fill="#EEEDFE" opacity=".85"/><path d="M300 150c-18 0-18-22 0-22 4-14 26-14 30 0 16 0 16 22 0 22z" fill="#9C9BA8" opacity=".55"/><path d="M296 168h40M300 178h30" stroke="#9C9BA8" stroke-width="3" stroke-linecap="round" opacity=".6"/>';
+o+='<circle cx="86" cy="196" r="9" fill="#CECBF6"/><rect x="77" y="206" width="18" height="30" rx="6" fill="#CECBF6"/><rect x="104" y="214" width="34" height="22" rx="3" fill="#534AB7"/><rect x="108" y="218" width="26" height="12" fill="#AFA9EC"/>';
+o+='<g transform="translate(250 226)"><rect width="46" height="24" rx="4" fill="#FAEEDA" stroke="#BA7517"/><text x="23" y="16" text-anchor="middle" font-size="11" fill="#633806">€€€</text></g><path d="M350 222l22-38 22 38z" fill="#FAC775" stroke="#BA7517" stroke-width="2" stroke-linejoin="round"/><path d="M372 198v12M372 216v.1" stroke="#412402" stroke-width="3" stroke-linecap="round"/></svg>';return o}
+function homeHtml(inn){const ben=[["ti-shield-check","Chyba ťa nič nestojí","Zrážka v simulátore je len červený krúžok. So skutočnými dronmi by znamenala poškodenú techniku a riziko."],["ti-player-pause","Čas máš vo svojich rukách","Show môžeš zastaviť, spomaliť a posúvať po časovej osi. Skutočná show beží vlastným tempom a späť sa nevráti."],["ti-bolt","Okamžitá spätná väzba","Semafor a komentár trénera dostaneš hneď. Môžeš opravovať a skúšať znova, koľkokrát potrebuješ."],["ti-messages","Rovnaký jazyk ako odborník","Odstup, rýchlosť, strop, zakázaný priestor, priradenie. Pri práci s technikom budeš rozumieť, o čom hovorí."],["ti-alert-triangle","Pochopíš, prečo softvér varuje","Keď ťa profesionálny program upozorní na problém, budeš vedieť, čo za tým je a ako ho opraviť."],["ti-rocket","Príprava na skutočnú techniku","K Blenderu a skutočným dronom prídeš s prvou skúsenosťou, nie od nuly. Technik nemusí vysvetľovať základy."]];
+const lessons=[["1.2","Oprav show","ti-ruler-2","Zväčši kruh, predĺž zmenu, trafí sa do hudby. Odstup, rýchlosť a časovanie."],["2.1","Kam môže show vletieť","ti-shield-check","Strop a zakázaný priestor. Oprava jednej chyby nesmie pokaziť druhú."],["2.2","Zmena tvaru bez zrážok","ti-arrows-shuffle","Ktorý dron letí kam? Dráhy sa nesmú krížiť."]];
+const path=[["ti-device-desktop","Simulátor v prehliadači","Dron Lab. Základné pravidlá a cit pre tvar, odstup, rýchlosť a priestor. Bez inštalácie a bez rizika.","Si tu",1],["ti-3d-cube-sphere","Návrh v Blenderi so Skybrush Studio","Profesionálny nástroj na tvorbu show. Podobné veličiny (odstupy, rýchlosti, výšky) tu už budeš poznať.","ďalší krok"],["ti-users","Spolu s technikom a pilotom","Prenos návrhu k skutočným dronom. Rozumieš tomu, čo hovoria, a vieš sa pýtať.","neskôr"],["ti-plane","Skutočná show","Vždy s povoleniami a podľa platných predpisov, s oprávneným pilotom.","cieľ"]];
+const faq=[["Môžem pracovať v tíme?","Áno. Tím má 2 až 4 členov, odovzdáva jeden z nich a odovzdanie platí všetkým. V prehľade je vidieť, kto odovzdával."],["Čo sa ukladá a kto to vidí?","Každé odovzdanie aj s komentárom trénera. Ty vidíš svoje, učiteľ vidí všetky pokusy tvojej triedy. Známku určuje učiteľ podľa pravidla, ktoré nájdeš v časti Učebnica."],["Ako sa počíta známka?","Jedna známka za lekciu. Splnený Základ ťa dostane na "+gradeOf(POINTS[0])+", Výzva ju vylepší na "+gradeOf(POINTS[0]+POINTS[1])+" a Expert na "+gradeOf(POINTS[0]+POINTS[1]+POINTS[2])+"."],["Musím niečo inštalovať?","Nie. Simulátor beží v prehliadači, je navrhnutý aj pre telefón a nepotrebuje žiadne konto, len kód triedy."],["Prečo sa čísla líšia od skutočných predpisov?","Odstupy, rýchlosti a výšky v simulátore sú učebné hodnoty, aby sa dali cvičiť. Skutočné limity závisia od typu dronov, miesta a povolení."]];
+return'<div class="banner">'+heroScene()+'</div>'+
+'<p class="lead">Dronová show vyzerá ako čarovanie, ale za každou je plán: <b>kto kam letí, kedy a ako rýchlo</b>, aby sa drony nezrazili a zostali v povolenom priestore. V Dron Lab si to vyskúšaš v simulátore ešte predtým, než sa dotkneš skutočnej techniky alebo profesionálneho softvéru.</p>'+
+'<div class="ig"><h2>Prečo začať simulátorom</h2><div class="sub">Šesť dôvodov, prečo sa oplatí učiť sa najprv na obrazovke.</div><div class="ben">'+ben.map(b=>'<div class="bn"><i class="ti '+b[0]+'" aria-hidden="true"></i><b>'+b[1]+"</b><span>"+b[2]+"</span></div>").join("")+"</div></div>"+
+'<div class="ig"><h2>Simulátor a skutočná práca</h2><div class="sub">To isté, čo sa naučíš tu, sa neskôr hodí pri skutočných dronoch. Líši sa len cena chyby.</div><div class="cmp"><figure>'+cmpSim()+'<figcaption><b>Simulátor</b>Zastavíš, spomalíš, vrátiš sa o úder späť. Chyba je krúžok na obrazovke a nič nestojí.</figcaption></figure><figure>'+cmpReal()+'<figcaption><b>Skutočná show</b>Drony, pilot, počasie, povolenia a rozpočet. Čas beží a chyba môže byť drahá alebo nebezpečná.</figcaption></figure></div></div>'+
+'<div class="ig"><h2>Cesta od simulátora k skutočnej show</h2><div class="sub">Simulátor je prvý krok. Každý ďalší stavia na tom, čo sa naučíš v predchádzajúcom.</div><div class="flow">'+path.map(x=>'<div class="fl'+(x[4]?" here":"")+'"><span class="badge'+(x[4]?" here":"")+'">'+x[3]+'</span><i class="ti '+x[0]+'" aria-hidden="true"></i><b>'+x[1]+"</b><span>"+x[2]+"</span></div>").join("")+"</div></div>"+
+'<div class="ig"><h2>Čo si vyskúšaš</h2><div class="sub">Tri lekcie, každá s tromi prípadmi a tromi úrovňami.</div><div class="lcards">'+lessons.map(l=>'<div class="fl"><span class="badge">'+l[0]+'</span><i class="ti '+l[2]+'" aria-hidden="true"></i><b>'+l[1]+"</b><span>"+l[3]+"</span></div>").join("")+"</div></div>"+
+'<div class="lim"><b>Čo simulátor nenahradí.</b> Skutočné lietanie, vietor a počasie, presnosť navigácie, batérie, povolenia a oprávnenie pilota. Simulátor je zjednodušený model s 20 dronmi a učebnými hodnotami. Slúži na to, aby sa pravidlá dali pochopiť skôr, než ich uvidíš v praxi, nie aby nahradil prácu s technikom.</div>'+
+'<div class="ig" style="margin-top:14px"><h2>Často kladené otázky</h2>'+faq.map(q=>"<details><summary>"+q[0]+'</summary><p style="margin:6px 0 4px">'+q[1]+"</p></details>").join("")+"</div>"+
+(inn?'<div class="cta"><p><b>Prihlásenie prebehlo.</b> Pokračuj v cvičeniach alebo si pozri tutoriály a slovník v učebnici.</p><div class="row"><button class="go" data-go="sim">Prejsť na cvičenia</button><button class="sh" data-go="book">Učebnica</button></div></div>':'<div class="cta"><p><b>Môžeš začať.</b> Kód triedy ti dal učiteľ. Zadaj ho v poli nižšie a vyber svoje meno.</p><a class="go" href="#sec-entry" style="text-decoration:none">Zadať kód triedy ↓</a></div>')}
+function renderHome(){$("#homeOut").innerHTML=homeHtml(false);$("#homeIn").innerHTML=homeHtml(true)}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-go]");if(b)tab(b.dataset.go)});
 /* ---------- štart ---------- */
 async function enter(){await loadMine();renderTeam();renderNav();renderParams();stop();renderResult()}
 async function boot(){await loadCfg();renderEntry();if(S.cfg&&S.cfg.ok&&S.sid)enter()}
-view();boot().then(()=>{if(location.hash==="#ucitel")view()});
+renderHome();view();boot().then(()=>{if(location.hash==="#ucitel")view()});
 </script>
 </body>
 </html>
